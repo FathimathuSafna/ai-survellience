@@ -1,0 +1,391 @@
+/* ==========================================
+   SCRATCH CARDS - COMPACT STYLES
+   ========================================== */
+
+.scratch-cards {
+  animation: fadeIn 0.3s ease;
+  font-size: 13px; /* Set base font size */
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Header */
+.scratch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Reduced from 32px */
+}
+
+.scratch-header-left h2 {
+  font-size: 20px; /* Reduced from 32px */
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scratch-header-left h2 i {
+  color: var(--primary-green);
+  font-size: 18px;
+}
+
+.scratch-header-left p {
+  font-size: 13px; /* Reduced from 16px */
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Stats Grid */
+.scratch-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px; /* Reduced gap */
+  margin-bottom: 24px;
+}
+
+.scratch-stat-card {
+  background: white;
+  padding: 12px 16px; /* Significantly reduced padding */
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.scratch-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.scratch-stat-icon {
+  width: 36px; /* Reduced from 48px */
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; /* Reduced font */
+  color: white;
+  flex-shrink: 0;
+}
+
+/* Stat Colors */
+.scratch-stat-card.total { border-color: var(--primary-green); }
+.scratch-stat-card.total .scratch-stat-icon { background: var(--gradient-green); }
+.scratch-stat-card.active .scratch-stat-icon { background: linear-gradient(135deg, #2e7d32, #43a047); }
+.scratch-stat-card.scratched .scratch-stat-icon { background: linear-gradient(135deg, #1976d2, #2196f3); }
+.scratch-stat-card.redeemed .scratch-stat-icon { background: linear-gradient(135deg, #7b1fa2, #9c27b0); }
+.scratch-stat-card.value .scratch-stat-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.scratch-stat-content { flex: 1; }
+
+.scratch-stat-value {
+  font-size: 20px; /* Reduced from 28px */
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.scratch-stat-label {
+  font-size: 11px; /* Reduced from 13px */
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Filters */
+.scratch-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input-scratch,
+.filter-select-scratch {
+  padding: 8px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  background: white;
+  height: 36px;
+}
+
+.search-input-scratch {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Cards Grid */
+.scratch-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Smaller cards */
+  gap: 16px;
+}
+
+.scratch-card-item {
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid var(--border-light);
+}
+
+.scratch-card-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-green);
+}
+
+/* Card Status Borders (Thinner) */
+.scratch-card-item.active { border-left: 3px solid #2e7d32; }
+.scratch-card-item.scratched { border-left: 3px solid #1976d2; }
+.scratch-card-item.redeemed { border-left: 3px solid #7b1fa2; }
+.scratch-card-item.expired { border-left: 3px solid #c62828; opacity: 0.8; }
+
+.scratch-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px; /* Reduced padding */
+  background: var(--bg-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.reward-type-badge,
+.status-badge-scratch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px; /* Smaller font */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.scratch-card-visual {
+  height: 140px; /* Reduced height from 200px */
+  position: relative;
+  overflow: hidden;
+}
+
+.scratch-surface {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #cbd5e0, #94a3b8);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scratch-instruction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.scratch-instruction i { font-size: 24px; }
+
+.reward-revealed {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.reward-revealed i { font-size: 32px; }
+.reward-value { font-size: 20px; font-weight: 700; }
+
+.scratch-card-content { padding: 14px; }
+
+.card-title {
+  font-size: 15px; /* Reduced from 20px */
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-description {
+ 
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2; 
+  line-clamp: 2;     
+  -webkit-box-orient: vertical;
+  font-size: 12px; 
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-item-scratch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.scratch-card-footer {
+  padding: 10px 14px;
+  background: var(--bg-light);
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.card-action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-action-btn.redeem { background: var(--gradient-green); color: white; flex: 1; justify-content: center; }
+.card-action-btn.delete { background: white; border: 1px solid #ffebee; color: #c62828; }
+.card-action-btn.delete:hover { background: #c62828; color: white; }
+
+/* Assign Employees & Modals Compact */
+.card-preview-box {
+  padding: 12px;
+  background: var(--bg-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  border: 1px solid var(--border-light);
+}
+
+.card-preview-box h4 {
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.preview-content { font-size: 12px; gap: 4px; }
+
+.assign-controls { margin-bottom: 16px; }
+
+.btn-select-all {
+  padding: 6px 12px;
+  font-size: 12px;
+  gap: 6px;
+}
+
+.selection-count { font-size: 12px; }
+
+.employees-grid-assign {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  max-height: 300px;
+}
+
+.employee-card-assign {
+  padding: 12px;
+  gap: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.employee-avatar-assign {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.employee-name-assign { font-size: 11px; }
+
+.selected-check { top: 6px; right: 6px; font-size: 16px; }
+
+/* Scratch Modal Compact */
+.modal-scratch { max-width: 500px; }
+.scratch-modal-body { padding: 24px; }
+
+.scratch-interactive-area { min-height: 250px; }
+
+.scratch-surface-large {
+  height: 180px; /* Reduced from 300px */
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+
+.btn-scratch-now {
+  padding: 10px 24px;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+.scratch-animation i { font-size: 48px; }
+.progress-bar-scratch { height: 8px; margin-bottom: 8px; }
+.progress-text { font-size: 16px; }
+
+/* Reward Reveal Animation Large */
+.reward-icon-large { font-size: 64px; margin-bottom: 12px; }
+.reward-title { font-size: 20px; margin-bottom: 8px; }
+.reward-value-large { font-size: 36px; margin-bottom: 12px; }
+.reward-description { font-size: 13px; margin-bottom: 16px; }
+
+.btn-redeem-large { padding: 12px; font-size: 14px; }
+.redeemed-message { padding: 12px; font-size: 13px; }
+
+/* Empty State */
+.empty-state-scratch { padding: 40px 20px; }
+.empty-state-scratch i { font-size: 40px; margin-bottom: 12px; }
+.empty-state-scratch p { font-size: 13px; margin-bottom: 16px; }
+
+/* Form Elements Compact */
+.form-group label { font-size: 11px; }
+.form-group input, .form-group select, .form-group textarea {
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .scratch-stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .scratch-cards-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .scratch-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .scratch-stats-grid { grid-template-columns: 1fr; }
+  .scratch-filters { flex-direction: column; }
+  .search-input-scratch { width: 100%; }
+}
