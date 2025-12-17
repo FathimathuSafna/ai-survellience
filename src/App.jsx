@@ -4,10 +4,11 @@ import FaceRecognition from './components/FaceRecognition';
 import RegisteredFaces from './components/RegisteredFaces';
 import HRDashboard from './components/hr-dashboard/HRDashboard';
 import AdminDashboard from './components/admin-dashboard/adminDashboard'
+import LoginPage from './components/login';
 import './App.css';
 
 function App() {
-  const [view, setView] = useState('face'); // 'face' or 'hr'
+  const [view, setView] = useState('login'); // 👈 login first
   const [videoCanvas, setVideoCanvas] = useState(null);
   const [overlayCanvas, setOverlayCanvas] = useState(null);
   const [showControls, setShowControls] = useState(false);
@@ -19,91 +20,59 @@ function App() {
 
   return (
     <div className="App">
-      {/* View Toggle Button */}
-      <div className="view-toggle-btn">
-        <button 
-          className={view === 'face' ? 'active' : ''}
-          onClick={() => setView('face')}
-        >
-          <i className="fas fa-video"></i>
-          Face Recognition
-        </button>
-        <button 
-          className={view === 'hr' ? 'active' : ''}
-          onClick={() => setView('hr')}
-        >
-          <i className="fas fa-tachometer-alt"></i>
-          HR Dashboard
-        </button>
-        <button 
-          className={view === 'admin' ? 'active' : ''}
-          onClick={() => setView('admin')}
-        >
-          <i className="fas fa-tachometer-alt"></i>
-          Admin Dashboard
-        </button>
-      </div>
 
-      {/* Face Recognition View */}
-      {view === 'face' && (
-        <div className="face-recognition-view">
-          <div className="video-container">
-            <div className="video-header">
-              <h1>
-                <i className="fas fa-video"></i>
-                Face Recognition System
-              </h1>
-            </div>
-            
-            <button 
-              className="settings-btn"
-              onClick={() => setShowControls(!showControls)}
-              title="Toggle Controls"
-            >
-              <i className={`fas ${showControls ? 'fa-times' : 'fa-cog'}`}></i>
-            </button>
+      {/* 🔑 LOGIN VIEW */}
+      {view === 'login' && (
+        <LoginPage setView={setView} />
+      )}
 
-            <CameraStream onStreamReady={handleStreamReady} />
-          </div>
-          
-          <div className={`controls-panel ${showControls ? 'open' : ''}`}>
-            <div className="controls-header">
-              <h3>
-                <i className="fas fa-user-shield"></i>
-                Control Panel
-              </h3>
-              <button 
-                className="close-btn"
-                onClick={() => setShowControls(false)}
-              >
-                <i className="fas fa-times"></i>
-              </button>
-            </div>
-            <FaceRecognition 
-              videoCanvas={videoCanvas} 
-              overlayCanvas={overlayCanvas} 
-            />
-            <RegisteredFaces />
-          </div>
+      {/* 🔘 VIEW TOGGLE (hide during login) */}
+      {view !== 'login' && (
+        <div className="view-toggle-btn">
+          <button
+            className={view === 'face' ? 'active' : ''}
+            onClick={() => setView('face')}
+          >
+            Face Recognition
+          </button>
 
-          {showControls && (
-            <div 
-              className="backdrop"
-              onClick={() => setShowControls(false)}
-            />
-          )}
+          <button
+            className={view === 'hr' ? 'active' : ''}
+            onClick={() => setView('hr')}
+          >
+            HR Dashboard
+          </button>
+
+          <button
+            className={view === 'admin' ? 'active' : ''}
+            onClick={() => setView('admin')}
+          >
+            Admin Dashboard
+          </button>
         </div>
       )}
 
-      {/* HR Dashboard View */}
-      {view === 'hr' && (
-        <HRDashboard />
+      {/* 🎥 FACE RECOGNITION */}
+      {view === 'face' && (
+        <div className="face-recognition-view">
+          <CameraStream onStreamReady={handleStreamReady} />
+          <FaceRecognition
+            videoCanvas={videoCanvas}
+            overlayCanvas={overlayCanvas}
+          />
+          <RegisteredFaces />
+        </div>
       )}
-       {view === 'admin' && (
-        <AdminDashboard />
-      )}
+
+      {/* 🧑‍💼 HR */}
+      {view === 'hr' && <HRDashboard />}
+
+      {/* 🛠 ADMIN */}
+      {view === 'admin' && <AdminDashboard />}
+
     </div>
   );
 }
+
 
 export default App;

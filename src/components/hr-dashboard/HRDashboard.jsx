@@ -17,6 +17,7 @@ import HelpIssues from './pages/HelpIssues';
 import UnknownPersons from './pages/UnknownPersons';
 import Notifications from './pages/Notifications';
 import Settings from './pages/Settings';
+import Manager from './pages/Manager'
 
 const HRDashboard = () => {
   const [activePage, setActivePage] = useState('dashboard');
@@ -40,6 +41,12 @@ const HRDashboard = () => {
       id: 'employees', 
       icon: 'fa-id-card', 
       label: 'Employees',
+      section: 'main'
+    },
+    { 
+      id: 'manager', 
+      icon: 'fa-user-tie',
+      label: 'Manager',
       section: 'main'
     },
     { 
@@ -126,6 +133,7 @@ const HRDashboard = () => {
       case 'dashboard': return <DashboardHome />;
       case 'live-attendance': return <LiveAttendance />;
       case 'employees': return <EmployeeManagement />;
+      case 'manager':return<Manager/>;
       case 'reports': return <AttendanceReports />;
       case 'shifts': return <ShiftManagement />;
       case 'leaves': return <LeaveManagement />;
